@@ -5,9 +5,7 @@ canvas.width = window.innerWidth;
 
 var c = canvas.getContext('2d');
 
-//Rect
-// c.fillStyle = 'rgba(255,0,0,0.7)'
-// c.fillRect(100, 100, 20, 50)
+
 
 //Line
 // c.beginPath();
