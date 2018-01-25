@@ -5,14 +5,24 @@ canvas.width = innerWidth;
 
 c = canvas.getContext('2d');
 
-canvas.addEventListener('click', function() {
-    init();    
-})
-
 var ballArray = [],
     colorArray = ['#3D9970', '#39CCCC', '#FF4136', '#85144b', '#FF851B'],
+    mouse = {
+        x: 50,
+        y: 50
+    },
     gravity = 0.2,
     friction = 0.98;
+
+    
+canvas.addEventListener('click', function(e) {
+    mouse.x = e.x;
+    mouse.y = e.y;
+    init();    
+    
+    console.log(ballArray)
+})
+
 
 function randomPosition(min, max) {
     return Math.floor((Math.random() * (max - min + 1) + min));
@@ -49,18 +59,18 @@ function Ball(x, y, radius, color, dx, dy) {
     }
 }
 
-function init() {    
-    ballArray = [];
-    for(var i = 0; i < 100; i++) {
-        ballArray.push(new Ball(randomPosition(20, innerWidth-20),
-                                randomPosition(20, innerHeight-20),
+function init() {   
+        ballArray.push(new Ball(mouse.x,
+                                mouse.y,
                                 20, 
                                 colorArray[randomPosition(0, colorArray.length-1)],
                                 randomPosition(1, 3),
                                 randomPosition(2, 5)))   
-                                ballArray[i].update();
-    }
+        ballArray[0].update();
+    
 }
+
+
 
 function animation() {
     requestAnimationFrame(animation);
